@@ -53,8 +53,9 @@ defmodule Metex.Server do
     {:stop, :shutdown, state}
   end
 
-  def terminate(_reason, state = {hash_pid, stats}) do
+  def terminate(reason, state = {hash_pid, stats}) do
     Metex.Stash.save_state(hash_pid, stats)
+    IO.puts "Shuting down the server (#{reason})..."
     {:noreply, state}
   end
 
