@@ -14,8 +14,17 @@ defmodule Metex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison],
-     mod: {Metex, []}]
+    [
+      applications: [:logger, :httpoison],
+      mod: {Metex, []},
+      env: [initial_state: %{}],
+      registered: [
+        Metex.Supervisor,
+        Metex.Stash,
+        Metex.SubSupervisor,
+        Metex.Server
+      ]
+    ]
   end
 
   # Dependencies can be Hex packages:

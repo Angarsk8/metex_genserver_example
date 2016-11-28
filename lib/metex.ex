@@ -5,6 +5,7 @@ defmodule Metex do
   # for more information on OTP Applications
   def start(_type, _args) do
     :observer.start
-    Metex.Supervisor.start_link(%{})
+    initial_state = Application.get_env(:metex, :initial_state)
+    Metex.Supervisor.start_link(initial_state)
   end
 end
